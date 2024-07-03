@@ -1,2 +1,2 @@
-# studentseminar2024
+# Student Seminar2024
 2024年地域情報研究室学生ゼミ用のリモートリポジトリ
