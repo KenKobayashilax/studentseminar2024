@@ -13,33 +13,37 @@ class BayesianLinearRegression:
         # データの数と特徴量の次元数を取得
         N, D = phi.shape
 
+        #########################################TODO:main##############################################
         # パラメータの事後分布の計算
         # p152 式(3.51) 
-        self.cov_posterior = np.linalg.inv(np.linalg.inv(self.cov_prior) + self.beta * phi.T @ phi)
+        self.cov_posterior = None
         # p152 式(3.50)
-        self.mu_posterior = self.cov_posterior @ (np.linalg.inv(self.cov_prior) @ self.mu_prior + self.beta * phi.T @ y)
+        self.mu_posterior = None
         
     # 予測分布の計算
     def predict(self, phi_pred):
         
+        #########################################TODO:main##############################################
         # p155 式(3.58) 
-        pred_mean = phi_pred @ self.mu_posterior
+        pred_mean = None
         # p155 式(3.59)
-        pred_cov = 1 / self.beta + np.sum(phi_pred @ self.cov_posterior * phi_pred, axis=1)
+        pred_cov = None
         return pred_mean, pred_cov
     
     # priorを一回前に予測された事後確率に更新
     def update_prior(self):
-        self.cov_prior = self.cov_posterior
-        self.mu_prior = self.mu_posterior
+        #########################################TODO:1 or 2##############################################
+        self.cov_prior = None
+        self.mu_prior = None
         
     # beta_priorを更新する
     def update_beta(self, phi, y):
         # numpy.linalg.eigを使って固有値と固有ベクトルを計算する(式3.87)
         eigenvalues, eigenvectors = np.linalg.eig(self.beta * phi.T @ phi)
 
+        #########################################TODO:1##############################################
         # p168 式(3.98)
-        gamma = np.sum(eigenvalues / eigenvalues + self.alpha)
+        gamma = None
         # βの更新 p168 式(3.95)
-        beta_new = 1 / (1 / (len(y) - gamma) * np.sum((y - phi @ self.mu_posterior)**2))
+        beta_new = None
         self.beta = beta_new
